@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html><head><title>Pomodoro</title>
+<style>body{font-family:sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;margin:0;background:#1a1a2e;color:white}
+#timer{font-size:96px;font-weight:bold}
+.btn{margin:10px;padding:10px 30px;font-size:18px;border:none;border-radius:8px;cursor:pointer;background:#e94560;color:white}
+.btn:hover{background:#c73e54}
+#label{font-size:24px;margin-bottom:10px}
+</style></head><body>
+<div style="text-align:center"><div id="label">Pomodoro</div><div id="timer">25:00</div>
+<button class="btn" onclick="start()">Start</button>
+<button class="btn" onclick="reset()">Reset</button></div>
+<script>let s=1500,iv=null;
+function pad(n){return n<10?"0"+n:n}
+function upd(){document.getElementById("timer").textContent=pad(Math.floor(s/60))+":"+pad(s%60)}
+function start(){if(iv){clearInterval(iv);iv=null}else iv=setInterval(()=>{if(--s<=0){clearInterval(iv);iv=null;new Audio("https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3").play()}upd()},1000)}
+function reset(){clearInterval(iv);iv=null;s=1500;upd()}
+</script></body></html>
